@@ -1,13 +1,6 @@
-const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
-
-module.exports = {
-	name: 'çal',
-	description: 'Şarkı çalar.',
-	usage: '[command name]',
-	args: true,
-	cooldown: 5,
-	async execute(message, args) {
+const { Util } = require('discord.js');
+module.exports.run = async (bot, message, args) => {
 		const { channel } = message.member.voice;
 		if (!channel) return message.channel.send('Sesli bir kanalda değilsin!');
 		const permissions = channel.permissionsFor(message.client.user);
@@ -75,5 +68,16 @@ module.exports = {
 			await channel.leave();
 			return message.channel.send(`Şuan sesli kanala katılamıyorum: ${error}`);
 		}
-	}
 };
+
+module.exports.conf = {
+  aliases: ["play"],
+  enabled: 'yes',
+  guild: false
+}
+
+module.exports.help = {
+  name: "çal",
+  usage: "çal <şarkı|link>",
+  category: "Kullanıcı"
+}
