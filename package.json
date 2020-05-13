@@ -1,37 +1,50 @@
 {
-	"name": "discord-music-bot",
-	"version": "0.1.0",
-	"description": "Very simple discord music bot with the discordjs.guide command handler for easy learning and adapting.",
-	"main": "src/index.js",
-	"author": "iCrawl <icrawltogo@gmail.com>",
-	"license": "MIT",
-	"private": true,
-	"scripts": {
-		"start": "node ."
-	},
-	"dependencies": {
-		"discord.js": "^12.2.0",
-		"dotenv": "^8.2.0",
-		"express": "^4.17.1",
-		"http": "^0.0.1-security",
-		"yt-search": "^1.1.2",
-		"ytdl-core": "^2.1.1"
-	},
-	"devDependencies": {
-		"eslint": "^7.0.0",
-		"eslint-config-aqua": "^7.2.3"
-	},
-	"optionalDependencies": {
-		"@discordjs/opus": "^0.3.0",
-		"erlpack": "github:discordapp/erlpack",
-		"zlib-sync": "^0.1.6"
-	},
-	"eslintConfig": {
-		"extends": "aqua/node"
-	},
-	"renovate": {
-		"extends": [
-			"teal"
-		]
-	}
+  "//1": "describes your app and its dependencies",
+  "//2": "https://docs.npmjs.com/files/package.json",
+  "//3": "updating this file will download and update your packages",
+  "name": "hello-express",
+  "version": "0.0.1",
+  "description": "A simple Node app built on Express, instantly up and running.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ascii-art": "^2.5.0",
+    "common-tags": "^1.8.0",
+    "discord.js": "^12.2.0",
+    "express": "^4.17.1",
+    "fs": "^0.0.2",
+    "jimp": "^0.10.3",
+    "m": "^1.5.6",
+    "math-expression-evaluator": "^1.2.22",
+    "ms": "^2.1.2",
+    "node-opus": "^0.3.3",
+    "opusscript": "^0.0.7",
+    "os": "^0.1.1",
+    "pnpm": "^4.14.3",
+    "puppy": "^0.0.1",
+    "quick.db": "^7.1.1",
+    "random": "^2.2.0",
+    "random-puppy": "^1.1.0",
+    "snekfetch": "^4.0.4",
+    "speedtest": "^1.1.0",
+    "speedtest-net": "^2.1.0",
+    "weather-js": "^2.0.0",
+    "ytdl-core": "^2.1.2",
+    "yt-search": "^1.1.2",
+    "node": "^14.2.0"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/hello-express"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
 }

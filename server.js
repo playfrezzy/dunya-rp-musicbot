@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { readdirSync } = require('fs');
 const { join } = require('path');
 const MusicClient = require('./struct/Client');
@@ -8,22 +7,27 @@ const app = express();
 const http = require('http');
 const client = new MusicClient({ token: process.env.DISCORD_TOKEN, prefix: process.env.DISCORD_PREFIX });
 
-const commandFiles = readdirSync(join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const command = require(join(__dirname, 'commands', `${file}`));
-	client.commands.set(command.name, command);
-}
+const ayarlar = require("./ayarlar.json");
+
+var logs = ayarlar.channels.logs;
+var sınır1 = ayarlar.channels.sınır;
+
+require("./functions")(client);
+
+//Command Handler
+client.commands = new Collection();
+client.aliases = new Collection();
 
 client.on('message', message => {
-	if (!message.content.startsWith(client.config.prefix) || message.author.bot) return;
-	const args = message.content.slice(client.config.prefix.length).split(/ +/);
+	if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
+	const args = message.content.slice(process.env.PREFIX.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 	if (!command) return;
 	if (command.guildOnly && message.channel.type !== 'text') return message.reply('DM\'den bu komutu yapamıyorum.');
 	if (command.args && !args.length) {
 		let reply = `Lütfen bir değer gir, ${message.author}!`;
-		if (command.usage) reply += `\nDoğru kullanım: \`${client.config.prefix}${command.name} ${command.usage}\``;
+		if (command.usage) reply += `\nDoğru kullanım: \`${process.env.PREFIX}${command.name} ${command.usage}\``;
 		return message.channel.send(reply);
 	}
 	if (!client.cooldowns.has(command.name)) {
@@ -48,24 +52,20 @@ client.on('message', message => {
 		console.error(error);
 		message.reply('Bir hata oluştu!');
 	}
+  
+  const serverQueue = message.client.queue.get(message.guild.id);
+  if(commandName == "denetle") {
+    if(serverQueue.playing == true) {
+      message.channel.send("Evet");
+    }
+  }
 });
 
-client.login(client.config.token);
+module.exports = {
+  bot: client
+};
 
-client.on('ready', async function() {
-  console.log(`Bot, ${client.user.username} ismi ile hazır!`);
-  client.user.setStatus("online");
-  
-  let states = [
-    `+yardım`,
-    `#evdekaltürkiye`
-  ]
-  
-  setInterval(function() {
-    let state = states[Math.floor(Math.random() * states.length)];
-    client.user.setActivity(state, {type: 'PLAYING'})
-  }, 5000)
-});
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.get("/", (request, response) => {
   console.log("Botu açık tutmak için yeniden bağlandım!");
@@ -73,5 +73,5 @@ app.get("/", (request, response) => {
 });
 app.listen(8080);
 setInterval(() => {
-  http.get(`https://dunya-rp.glitch.me`);
+  http.get(`http://dunya-rp-musicbot.glitch.me`);
 }, 280000);
