@@ -11,7 +11,8 @@ module.exports.run = (bot, message, args) => {
 module.exports.conf = {
   aliases: ["pause"],
   enabled: 'yes',
-  guild: true
+  guild: true,
+  args: false
 }
 
 module.exports.help = {

@@ -1,7 +1,7 @@
 const ytdl = require('ytdl-core');
 const { Util } = require('discord.js');
-module.exports.run = async (bot, message, args) => {
-		const { channel } = message.member.voice;
+module.exports.run = async (client, message, args) => {
+		const channel = message.member.voiceChannel;
 		if (!channel) return message.channel.send('Sesli bir kanalda değilsin!');
 		const permissions = channel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT')) return message.channel.send('Oraya katılmak için iznim yok! (Bağlanma)');
@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
     let validate = await ytdl.validateURL(args[0]);
     if(!validate) {
       let commandFile = require('./ara.js');
-      return commandFile.execute(message, args);
+      return commandFile.run(client, message, args);
     }
 
 		const serverQueue = message.client.queue.get(message.guild.id);
@@ -33,8 +33,9 @@ module.exports.run = async (bot, message, args) => {
 			voiceChannel: channel,
 			connection: null,
 			songs: [],
-			volume: 2,
-			playing: true
+			volume: 1,
+			playing: true,
+      mode: 0
 		};
 		message.client.queue.set(message.guild.id, queueConstruct);
 		queueConstruct.songs.push(song);
@@ -73,7 +74,8 @@ module.exports.run = async (bot, message, args) => {
 module.exports.conf = {
   aliases: ["play"],
   enabled: 'yes',
-  guild: false
+  guild: true,
+  args: true
 }
 
 module.exports.help = {
