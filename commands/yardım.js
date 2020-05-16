@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const ayarlar = require('../ayarlar.json');
-module.exports.run = (client, message, args) => {
+module.exports.run = (bot, message, args) => {
   let prefixes = JSON.parse(fs.readFileSync("./storage/prefixes.json", "utf8"));
   let prefix = prefixes[message.guild.id].prefixes;
   fs.readdir("./commands/", (err, files) => {

@@ -1,8 +1,8 @@
-const {client} = require('../server');
+const {bot} = require('../server');
 const ayarlar = require('../ayarlar.json');
 const fs = require('fs');
 
-client.on('message', async message => {
+bot.on('message', async message => {
   
   let prefixes = JSON.parse(fs.readFileSync("./storage/prefixes.json", "utf8"));
   
@@ -35,19 +35,12 @@ client.on('message', async message => {
   
   console.log(message.author.username + ', şu komutu çalıştırdı: ' + cmd)
   
-  if (client.commands.has(cmd)) {
-    command = client.commands.get(cmd);
+  if (bot.commands.has(cmd)) {
+    command = bot.commands.get(cmd);
   } else {
-    command = client.commands.get(client.aliases.get(cmd));
+    command = bot.commands.get(bot.aliases.get(cmd));
   }
   
-  if (command.conf.guildOnly && message.channel.type !== 'text') return message.reply('DM\'den bu komutu yapamıyorum.');
-	if (command.conf.args && !args.length) {
-		let reply = `Lütfen bir değer gir, ${message.author}!`;
-		if (command.help.usage) reply += `\nDoğru kullanım: \`${process.env.PREFIX}${command.help.name} ${command.help.usage}\``;
-		return message.channel.send(reply);
-	}
-  
-  if (command) command.run(client, message, args);
+  if (command) command.run(bot, message, args);
   
 });

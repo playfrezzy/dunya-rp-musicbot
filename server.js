@@ -18,6 +18,26 @@ require("./functions")(client);
 client.commands = new Collection();
 client.aliases = new Collection();
 
+client.on('message', async message => {
+  let msg = message.content.toLowerCase();
+  
+  if(!msg.startsWith('+')) return;
+  
+  if(msg === "+denetle") {
+    const queueConstruct = {
+      textChannel: null,
+      voiceChannel: null,
+      connection: null,
+      songs: [],
+      volume: 2,
+      playing: false,
+      mode: 0
+    };
+    message.client.queue.set(message.guild.id, queueConstruct);
+    message.channel.send("Denetlendi!");
+  }
+})
+
 module.exports = {
   client: client
 };

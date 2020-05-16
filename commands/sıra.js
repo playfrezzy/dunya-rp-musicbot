@@ -1,4 +1,4 @@
-module.exports.run = (client, message, args) => {
+module.exports.run = (bot, message, args) => {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue) return message.channel.send("Şuan çalınan bişey yok!");
     return message.channel.send(`

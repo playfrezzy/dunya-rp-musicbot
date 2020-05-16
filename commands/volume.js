@@ -1,4 +1,4 @@
-module.exports.run = (client, message, args) => {
+module.exports.run = (bot, message, args) => {
   if(message.member.id != process.env.SAHIP1 && message.member.id != process.env.SAHIP2) return message.reply("Bunu yapmak için yetkin yok!");
   const { channel } = message.member.voice;
   if (!channel) return message.channel.send('Bir sesli kanala bağlanman gerekiyor!');
