@@ -1,5 +1,5 @@
 const ytdl = require('ytdl-core');
-module.exports.run = (client, message, args) => {
+module.exports.run = (bot, message, args) => {
   let channel = message.member.voiceChannel;;
   if (!channel) return message.channel.send('Bunun için sesli bir kanala bağlanman gerekiyor!');
   

@@ -1,6 +1,6 @@
 const ytdl = require('ytdl-core');
 const { Util } = require('discord.js');
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (bot, message, args) => {
 		const channel = message.member.voiceChannel;
 		if (!channel) return message.channel.send('Sesli bir kanalda değilsin!');
 		const permissions = channel.permissionsFor(message.client.user);
@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
     let validate = await ytdl.validateURL(args[0]);
     if(!validate) {
       let commandFile = require('./ara.js');
-      return commandFile.run(client, message, args);
+      return commandFile.run(bot, message, args);
     }
 
 		const serverQueue = message.client.queue.get(message.guild.id);
@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args) => {
 			voiceChannel: channel,
 			connection: null,
 			songs: [],
-			volume: 1,
+			volume: 2,
 			playing: true,
       mode: 0
 		};
