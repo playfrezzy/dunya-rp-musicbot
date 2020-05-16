@@ -1,4 +1,4 @@
-module.exports.run = (bot, message, args) => {
+module.exports.run = (client, message, args) => {
   let channel = message.member.voiceChannel;;
   if (!channel) return message.channel.send('Bunun için sesli bir kanala bağlanman gerekiyor!');
   const serverQueue = message.client.queue.get(message.guild.id);

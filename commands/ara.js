@@ -1,5 +1,5 @@
 const search = require('yt-search')
-module.exports.run = (bot, message, args) => {
+module.exports.run = (client, message, args) => {
   search(args.join(" "), function(err, res) {
     if(err) return message.channel.send("Bir hata oluştu!");
 
@@ -24,7 +24,7 @@ module.exports.run = (bot, message, args) => {
     collector.once('collect', function(m) {
 
       let commandFile = require('./çal.js');
-      commandFile.run(bot, message, [this.videos[parseInt(m.content)-1].url])
+      commandFile.run(client, message, [this.videos[parseInt(m.content)-1].url])
 
     })
   });

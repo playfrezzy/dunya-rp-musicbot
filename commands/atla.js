@@ -1,5 +1,5 @@
 const ytdl = require('ytdl-core');
-module.exports.run = (bot, message, args) => {
+module.exports.run = (client, message, args) => {
 		const { channel } = message.member.voice;
 		if (!channel) return message.channel.send('Bunun için sesli bir kanalda olman gerekiyor.');
 		const serverQueue = message.client.queue.get(message.guild.id);

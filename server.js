@@ -19,7 +19,7 @@ client.commands = new Collection();
 client.aliases = new Collection();
 
 module.exports = {
-  bot: client
+  client: client
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
