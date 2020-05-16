@@ -1,4 +1,4 @@
-module.exports.run = (bot, message, args) => {
+module.exports.run = (client, message, args) => {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue) return message.channel.send("Şuan çalınan bişey yok!");
     return message.channel.send(`
@@ -13,7 +13,8 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join("\n")}
 module.exports.conf = {
   aliases: ["gueue"],
   enabled: 'yes',
-  guild: true
+  guild: true,
+  args: false
 }
 
 module.exports.help = {

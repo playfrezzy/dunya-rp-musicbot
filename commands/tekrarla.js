@@ -1,21 +1,30 @@
-module.exports.run = (bot, message, args) => {
+const ytdl = require('ytdl-core');
+module.exports.run = (client, message, args) => {
   let channel = message.member.voiceChannel;;
   if (!channel) return message.channel.send('Bunun için sesli bir kanala bağlanman gerekiyor!');
+  
   const serverQueue = message.client.queue.get(message.guild.id);
   if (!serverQueue) return message.channel.send('Şuan çalınan bir şey yok.');
-  serverQueue.songs = [];
-  serverQueue.connection.dispatcher.end('Senin için şarkı durduruldu!');
+  
+  serverQueue.connection.dispatcher
+    .on('finish', () => {
+      serverQueue.connection.play(ytdl(serverQueue.songs[0]))
+    })
+    .on('error', error => console.error(error));
+  
+  serverQueue.mode = 1;
+  message.channel.send('Şuanki şarkı tekrarlanıyor!');
 };
 
 module.exports.conf = {
-  aliases: ["stop"],
+  aliases: ["repeat"],
   enabled: 'yes',
   guild: true,
   args: false
 }
 
 module.exports.help = {
-  name: "durdur",
-  usage: "durdur",
+  name: "tekrarla",
+  usage: "tekrarla",
   category: "Kullanıcı"
 }

@@ -24,7 +24,7 @@ module.exports.run = (bot, message, args) => {
     collector.once('collect', function(m) {
 
       let commandFile = require('./çal.js');
-      commandFile.execute(message, [this.videos[parseInt(m.content)-1].url])
+      commandFile.run(bot, message, [this.videos[parseInt(m.content)-1].url])
 
     })
   });
@@ -33,7 +33,8 @@ module.exports.run = (bot, message, args) => {
 module.exports.conf = {
   aliases: ["search"],
   enabled: 'yes',
-  guild: false
+  guild: true,
+  args: true
 }
 
 module.exports.help = {
