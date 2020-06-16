@@ -5,13 +5,15 @@ module.exports.run = (client, message, args) => {
 
 
     let videos = res.videos.slice(0, 10);
+    
+    if(videos.length === 0) return message.reply("Böyle bir şarkı bulunamadı!");
 
     let resp = "";
     for(var i in videos) {
       resp += `**[${parseInt(i)+1}]:** \`${videos[i].title}\`\n`;
     }
 
-    resp += `\n**Bir Sayı Seç: \`1-${videos.length}\``;
+    resp += `\n**Bir Sayı Seç: \`1-${videos.length}\` / Ya da \`İptal\` et`;
 
     message.channel.send(resp);
 
@@ -22,6 +24,8 @@ module.exports.run = (client, message, args) => {
     collector.videos = videos;
 
     collector.once('collect', function(m) {
+      
+      if(m.content.toLowerCase() === "iptal") return message.reply("İptal edildi!");
 
       let commandFile = require('./çal.js');
       commandFile.run(client, message, [this.videos[parseInt(m.content)-1].url])

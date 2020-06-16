@@ -5,7 +5,7 @@ module.exports.run = (client, message, args) => {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		if (!serverQueue) return message.channel.send('Şuan çalınan bir şey yok!');
     
-    /*let userCount = channel.members.size;
+    let userCount = channel.members.size;
     
     let required = Math.ceil(userCount/2);
     
@@ -17,7 +17,7 @@ module.exports.run = (client, message, args) => {
     
     message.reply(`Başarıyla şarkıyı atlamak için oyladın! (${serverQueue.voteSkips.length}/${required} Oy)`);
     
-    if(serverQueue.voteSkips.length >= required) {*/
+    if(serverQueue.voteSkips.length >= required) {
       if(serverQueue.mode === 1) {
         serverQueue.connection.dispatcher
           .on('finish', () => {
@@ -29,7 +29,7 @@ module.exports.run = (client, message, args) => {
       }
 		  serverQueue.connection.dispatcher.end('Şarkı oy çokluğu ile atlatıldı!');
       serverQueue.voteSkips = [];
-    //}
+    }
 };
 
 module.exports.conf = {
