@@ -1,4 +1,4 @@
-module.exports.run = (bot, message, args) => {
+module.exports.run = (client, message, args) => {
   const serverQueue = message.client.queue.get(message.guild.id);
   if (serverQueue && serverQueue.playing) {
     serverQueue.playing = false;

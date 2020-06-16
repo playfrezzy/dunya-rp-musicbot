@@ -8,9 +8,10 @@ bot.on('ready', async function() {
   console.log(`Bot, ${bot.user.username} ismi ile hazır!`);
   bot.user.setStatus(ayarlar.activity.status);
   let states = [
-    `+yardım`,
-    `${bot.users.size} kişi ile birlikte!`,
-    `#evdekaltürkiye`
+    `için`
+    // `+yardım`,
+    // `${bot.users.cache.size - 1} kişi ile birlikte!`,
+    // `#evdekaltürkiye`
   ]
   
   setInterval(function() {

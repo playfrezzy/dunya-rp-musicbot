@@ -3,7 +3,7 @@ const { RichEmbed } = require('discord.js');
 const geniusLyricsAPI = process.env.LYRICS_API;
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (client, message, args) => {
   
   if (!args.join(" ")) return message.channel.send("Lütfen bir şarkı ismi giriniz!");
   

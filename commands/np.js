@@ -1,7 +1,7 @@
-module.exports.run = (bot, message, args) => {
+module.exports.run = (client, message, args) => {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		if (!serverQueue) return message.channel.send('There is nothing playing.');
-		return message.channel.send(`🎶 Now playing: **${serverQueue.songs[0].title}**`);
+		return message.channel.send(`🎶 Now playing: **${serverQueue.songs[0].title}**\n${serverQueue.songs[0].url}`);
 };
 
 module.exports.conf = {
