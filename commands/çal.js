@@ -1,12 +1,12 @@
 const ytdl = require('ytdl-core');
 const { Util } = require('discord.js');
 module.exports.run = async (client, message, args) => {
-		const channel = message.member.voice.channel;
+		const channel = message.member.voiceChannel;
 		if (!channel) return message.channel.send('Sesli bir kanalda değilsin!');
 		const permissions = channel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT')) return message.channel.send('Oraya katılmak için iznim yok! (Bağlanma)');
 		if (!permissions.has('SPEAK')) return message.channel.send('Oraya katılmak için iznim yok! (Konuşma)');
-    
+
     let validate = await ytdl.validateURL(args[0]);
     if(!validate) {
       let commandFile = require('./ara.js');

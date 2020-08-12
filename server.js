@@ -1,14 +1,10 @@
-const { readdirSync } = require('fs');
+﻿const { readdirSync } = require('fs');
 const { join } = require('path');
 const MusicClient = require('./struct/Client');
 const { Collection } = require('discord.js');
 const ms = require('ms');
-const express = require('express');
-const app = express();
-const http = require('http');
-const client = new MusicClient({ token: process.env.TOKEN, prefix: process.env.PREFIX });
-
 const ayarlar = require("./ayarlar.json");
+const client = new MusicClient({ token: ayarlar.token, prefix: ayarlar.prefix });
 
 var logs = ayarlar.channels.logs;
 var sınır1 = ayarlar.channels.sınır;
@@ -24,15 +20,6 @@ module.exports = {
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-app.get("/", (request, response) => {
-  console.log("Botu açık tutmak için yeniden bağlandım!");
-  response.sendStatus(200);
-});
-app.listen(8080);
-setInterval(() => {
-  http.get(`http://slime-natural-buttercup.glitch.me/`);
-}, ms('1m'));
 
   // "scripts": {
   //   "start": "node server.js"

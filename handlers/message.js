@@ -33,13 +33,13 @@ bot.on('message', async message => {
 
   if (!msg.startsWith(prefix.toUpperCase())) return;
   
-  console.log(message.author.username + ', şu komutu çalıştırdı: ' + cmd)
-  
   if (bot.commands.has(cmd)) {
     command = bot.commands.get(cmd);
-  } else {
+  } else if (bot.aliases.has(cmd)) {
     command = bot.commands.get(bot.aliases.get(cmd));
-  }
+  } else return;
+    
+  console.log(message.author.username + ', şu komutu çalıştırdı: ' + cmd)
   
   if (command) command.run(bot, message, args);
   

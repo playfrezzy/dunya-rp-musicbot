@@ -1,9 +1,9 @@
-const {bot} = require('../server');
+﻿const {bot} = require('../server');
 const ayarlar = require('../ayarlar.json');
 const fs = require('fs');
 const ms = require('ms');
 let prefixes = JSON.parse(fs.readFileSync("./storage/prefixes.json", "utf8"));
-bot.login(process.env.TOKEN);
+bot.login(ayarlar.token);
 bot.on('ready', async function() {
   console.log(`Bot, ${bot.user.username} ismi ile hazır!`);
   bot.user.setStatus(ayarlar.activity.status);

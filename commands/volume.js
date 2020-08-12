@@ -1,5 +1,5 @@
-module.exports.run = (bot, message, args) => {
-  if(message.member.id != process.env.SAHIP1 && message.member.id != process.env.SAHIP2) return message.reply("Bunu yapmak için yetkin yok!");
+﻿module.exports.run = (bot, message, args) => {
+  if(message.member.id != ayarlar.SAHIP1 && message.member.id != ayarlar.SAHIP2) return message.reply("Bunu yapmak için yetkin yok!");
   const { channel } = message.member.voice;
   if (!channel) return message.channel.send('Bir sesli kanala bağlanman gerekiyor!');
   const serverQueue = message.client.queue.get(message.guild.id);
